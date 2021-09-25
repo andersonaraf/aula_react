@@ -32,7 +32,7 @@ export default function Details({ navigation, route }) {
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.label}>Produto: </Text>
-            <TextInput style={styles.input} onChangeText={setProdutoEdit} value={produto} placeholder="Ex: Estudar js" />
+            <TextInput style={styles.input} onChangeText={setProdutoEdit} value={produtoEdit} placeholder="Ex: Estudar js" />
 
             <Text style={styles.label}>Endereço: </Text>
             <TextInput style={styles.input} placeholder="Rua" />
