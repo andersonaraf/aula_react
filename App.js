@@ -15,12 +15,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="Task">
           <Stack.Screen name="Produtos" component={Task} options={{headerTintColor:"#f92"}}/>
           <Stack.Screen name="Novo Produto" component={NewTask} options={{headerTintColor:"#f92"}}/>
-<<<<<<< HEAD
           <Stack.Screen name="Detalhes Do Produto" component={Details} options={{headerTintColor:"#f92"}}/>
-=======
-          <Stack.Screen name="Detalhes" component={Details} options={{headerTintColor:"#f92"}}/>
-          <Stack.Screen name="Entrega" component={Delivery} options={{headerTintColor:"#f92"}}/>
->>>>>>> origin/entrega
         </Stack.Navigator>
       </NavigationContainer>
 
