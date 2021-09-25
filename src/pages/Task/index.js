@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import styles from "./style"
+import { alignSelf } from 'styled-system';
 
 export default function Task({ navigation }) {
     const [task, setTask] = useState([]);
@@ -37,7 +38,17 @@ export default function Task({ navigation }) {
                             <TouchableOpacity style={styles.deleteTask} onPress={() => { deleteTask(item.item.id) }}>
                                <Text style={styles.textDelete}>Deletar</Text>
                             </TouchableOpacity>
+<<<<<<< HEAD
                             <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes Do Produto", { id: item.item.id, produto: item.item.produto, endereco: item.item.cep, bairro: item.item.bairro, rua: item.item.rua}) }}>{item.item.produto}</Text>
+=======
+                            <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes", { id: item.item.id, description: item.item.description, urlImage: item.item.image, lat: item.item.lat, long: item.item.long}) }}>{item.item.description}</Text>
+                            <TouchableOpacity 
+                                style={styles.deliveryButtom}
+                                onPress={() => { navigation.navigate("Entrega")}}
+                            > 
+                                <Text>Entregar</Text>
+                            </TouchableOpacity>
+>>>>>>> origin/entrega
                         </View>
                     )
                 }}
