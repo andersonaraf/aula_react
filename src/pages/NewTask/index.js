@@ -47,7 +47,6 @@ export default function NewTask({ navigation }) {
                     entregas: entregas,
                 });
             Alert.alert('Sucesso', 'Tarefa adicionada com sucesso!')
-            setImage(null);
             navigation.navigate("Produtos")
         }
     }
