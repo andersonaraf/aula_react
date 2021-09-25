@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
+import { marginRight } from "styled-system";
 
 const styles = StyleSheet.create({ 
     container: {
         flex: 1,
         backgroundColor: '#fff',
         paddingTop: 20,
+        paddingHorizontal: 10
     },
     Task: {
         width: '100%',
@@ -23,14 +25,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     DescriptionTask: {
-        width: '75%',
+        width: '55%',
         alignContent: 'flex-start',
         backgroundColor: '#f5f5f5cf',
         padding: 12,
         paddingHorizontal: 20,
         borderRadius: 50,
         marginBottom: 5,
-        marginRight: 15,
         color: "#282b2db5",
     },
     buttonNewTask: {
@@ -43,11 +44,19 @@ const styles = StyleSheet.create({
         borderRadius:50,
         justifyContent: 'center',
         alignItems: 'center',
-    },  
+    },
     iconButton: {
         color: "#fff",
         fontSize: 25,
         fontWeight: 'bold',
+    },
+    deliveryButtom: {
+        width: '15%',
+        height: '80%',
+        borderRadius: 5,
+        backgroundColor: 'red',
+        backgroundColor: '#77B55F',
+        alignItems: 'center',
     }
  });
 

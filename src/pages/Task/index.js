@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import styles from "./style"
+import { alignSelf } from 'styled-system';
 
 export default function Task({ navigation }) {
     const [task, setTask] = useState([]);
@@ -38,6 +39,12 @@ export default function Task({ navigation }) {
                                <Text style={styles.textDelete}>Deletar</Text>
                             </TouchableOpacity>
                             <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes", { id: item.item.id, description: item.item.description, urlImage: item.item.image, lat: item.item.lat, long: item.item.long}) }}>{item.item.description}</Text>
+                            <TouchableOpacity 
+                                style={styles.deliveryButtom}
+                                onPress={() => { navigation.navigate("Entrega")}}
+                            > 
+                                <Text>Entregar</Text>
+                            </TouchableOpacity>
                         </View>
                     )
                 }}
