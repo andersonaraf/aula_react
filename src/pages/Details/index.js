@@ -7,7 +7,6 @@ import ImagePicker from 'react-native-image-crop-picker';
 import styles from "./style"
 
 export default function Details({ navigation, route }) {
-    console.log(route.params)
     const [produtoEdit, setProdutoEdit] = useState(route.params.produto);
     const idTask = route.params.id;
 
