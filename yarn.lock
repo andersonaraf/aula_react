@@ -7455,7 +7455,7 @@ react-native-image-crop-picker@^0.36.3:
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.36.3.tgz#cf574ca9722095ad4398821f3a23d81bbde7c82e"
   integrity sha512-kha9FF+l5f9mQVOA4fnGmzavatBdCPllSMlSBm7u1VZstqD6pHnrVcsM+SZty8SAfH4CUWygR3PTJg7xwxTJgA==
 
-react-native-maps@^0.29.3:
+react-native-maps@0.29.3:
   version "0.29.3"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.29.3.tgz#ab873fa5e7301c29f07886df5f3cbef667d46cca"
   integrity sha512-742ipC71NdGHXmrCHPY9SEGDuKoSx2l0RMC1W9WXe/jd6+Eg5OllRBcR6Y+ORnzvuYZrd0Hj6q6bK3QR5ZL8sA==
