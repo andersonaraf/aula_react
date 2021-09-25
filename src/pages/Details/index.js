@@ -14,10 +14,10 @@ export default function Details({ navigation, route }) {
     const [cep, setCep] = useState(route.params.endereco);//cep
     const idTask = route.params.id;
 
-    async function editTask(produto, id) {
-        if (produto.length > 0) {
+    async function editTask( id) {
+        if (produtoEdit.length > 0) {
             firestore().collection('tasks').doc(id).update({
-                produto: produto,
+                produto: produtoEdit,
                 rua: rua,
                 bairro: bairro,
                 numero: numero,
@@ -26,16 +26,6 @@ export default function Details({ navigation, route }) {
             navigation.navigate('Produtos');
         }
 
-    }
-
-    function takePhotoFromCamera() {
-        ImagePicker.openCamera({
-            compressImageMaxWidth: 300,
-            compressImageMaxHeight: 400,
-            cropping: true,
-        }).then(image => {
-            setImage(image);
-        });
     }
     return (
         <ScrollView style={styles.container}>
@@ -59,7 +49,7 @@ export default function Details({ navigation, route }) {
                 />
             </MapView> */}
 
-            <TouchableOpacity style={styles.addImage} onPress={() => { editTask(descriptionEdit, idTask) }}>
+            <TouchableOpacity style={styles.addImage} onPress={() => { editTask(idTask) }}>
                 <Text style={styles.textImage}>SALVAR</Text>
             </TouchableOpacity>
         </ScrollView>
