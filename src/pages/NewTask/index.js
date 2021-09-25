@@ -2,14 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 import firestore from '@react-native-firebase/firestore';
-import storage from '@react-native-firebase/storage';
-
-import ImagePicker from 'react-native-image-crop-picker';
 
 import styles from './style';
-import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
-
-import Geolocation from '@react-native-community/geolocation';
 
 export default function NewTask({ navigation }) {
     const [status, setStatus] = useState(false);//nome status de entrega
@@ -19,37 +13,19 @@ export default function NewTask({ navigation }) {
     const [bairro, setBairro] = useState(null);//bairoo
     const [numero, setNumero] = useState(null);//numero
     const [cep, setCep] = useState(null);//cep
-    const [lat, setLat] = useState(null);
-    const [long, setLong] = useState(null);
 
-    useEffect(() => {
-        Geolocation.getCurrentPosition((info) => {
-            setLat(info.coords.latitude)
-            setLong(info.coords.longitude)
-        
-        });
-    }, [])
-    
     const addTask = async () => {
         if (produto != null && rua != null && bairro != null && numero != null && cep != null) {
 
             firestore()
                 .collection('tasks')
                 .add({
-<<<<<<< HEAD
-                    description: description,
-                    delivery_status: false,
-                    image: fileName,
-=======
                     produto: produto,
                     rua: rua,
                     bairro: bairro,
                     numero: numero,
                     cep: cep,
                     status: status,
->>>>>>> origin/branch
-                    lat: lat,
-                    long: long,
                     entregas: entregas,
                 });
             Alert.alert('Sucesso', 'Tarefa adicionada com sucesso!')
