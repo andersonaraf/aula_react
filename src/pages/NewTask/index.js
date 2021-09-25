@@ -54,7 +54,7 @@ export default function NewTask({ navigation }) {
                 .collection('tasks')
                 .add({
                     description: description,
-                    status: false,
+                    delivery_status: false,
                     image: fileName,
                     lat: lat,
                     long: long

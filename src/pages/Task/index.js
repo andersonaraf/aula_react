@@ -37,7 +37,7 @@ export default function Task({ navigation }) {
                             <TouchableOpacity style={styles.deleteTask} onPress={() => { deleteTask(item.item.id) }}>
                                <Text style={styles.textDelete}>Deletar</Text>
                             </TouchableOpacity>
-                            <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes", { id: item.item.id, description: item.item.description, urlImage: item.item.image, lat: item.item.lat, long: item.item.long}) }}>{item.item.description}</Text>
+                            <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes Do Produto", { id: item.item.id, produto: item.item.produto, endereco: item.item.cep, bairro: item.item.bairro, rua: item.item.rua}) }}>{item.item.produto}</Text>
                         </View>
                     )
                 }}
