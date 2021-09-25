@@ -2151,6 +2151,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-12.8.0.tgz#d470a90dbb43b9121e44432fedb9fc8ad8c90778"
   integrity sha512-ekI/qyl6/hAmFZJhGx8A4NwrJzFmhMPHDJYCzmDy2CJzbMBFJRmebTBsvVh/DIB+M1X2idQwqx1iz4kkF8CssQ==
 
+"@react-native-firebase/messaging@^12.8.0":
+  version "12.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-12.8.0.tgz#f601541be15e67678d6e44ff0a4f3fd9183142bb"
+  integrity sha512-Lc6qxhSP7w7XHSPy9CKbIuRVqCk//G3dbMFr9Jq5jmRgbT4pr6tlsZVjMVU1Yx5OBJm8beB3RPWKjZhAsRxy7Q==
+
 "@react-native-firebase/storage@^12.8.0":
   version "12.8.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-12.8.0.tgz#3a70d855f13742f01ca8854c042d7c2788fd9e97"
