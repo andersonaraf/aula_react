@@ -8,12 +8,20 @@ import styles from "./style"
 
 export default function Details({ navigation, route }) {
     const [produtoEdit, setProdutoEdit] = useState(route.params.produto);
+    const [rua, setRua] = useState(route.params.rua);//rua
+    const [bairro, setBairro] = useState(route.params.bairro);//bairoo
+    const [numero, setNumero] = useState(route.params.numero);//numero
+    const [cep, setCep] = useState(route.params.endereco);//cep
     const idTask = route.params.id;
 
     async function editTask(produto, id) {
         if (produto.length > 0) {
             firestore().collection('tasks').doc(id).update({
                 produto: produto,
+                rua: rua,
+                bairro: bairro,
+                numero: numero,
+                cep: cep,
             });
             navigation.navigate('Produtos');
         }
@@ -35,10 +43,10 @@ export default function Details({ navigation, route }) {
             <TextInput style={styles.input} onChangeText={setProdutoEdit} value={produtoEdit} placeholder="Ex: Estudar js" />
 
             <Text style={styles.label}>Endereço: </Text>
-            <TextInput style={styles.input} placeholder="Rua" />
-            <TextInput style={styles.input} placeholder="Bairro" />
-            <TextInput style={styles.input} placeholder="Número" />
-
+            <TextInput style={styles.input} onChangeText={setRua} value={rua} placeholder="Rua" />
+            <TextInput style={styles.input} onChangeText={setBairro} value={bairro} placeholder="Bairro" />
+            <TextInput style={styles.input} onChangeText={setNumero} value={numero} placeholder="124" />
+            <TextInput style={styles.input} onChangeText={setCep} value={cep} placeholder="69915-840" />
             {/* <MapView style={styles.map} initialRegion={{
                 latitude: latRoute,
                 longitude: longRoute,
