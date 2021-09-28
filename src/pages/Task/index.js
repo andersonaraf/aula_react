@@ -41,7 +41,7 @@ export default function Task({ navigation }) {
                             <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes Do Produto", { id: item.item.id, produto: item.item.produto, endereco: item.item.cep, rua: item.item.rua, numero: item.item.numero, bairro: item.item.bairro}) }}>{item.item.produto}</Text>
                             <TouchableOpacity 
                                 style={styles.deliveryButtom}
-                                onPress={() => { navigation.navigate("Entrega")}}
+                                onPress={() => { navigation.navigate("Realizar Entrega")}}
                             > 
                                 <Text>Entregar</Text>
                             </TouchableOpacity>

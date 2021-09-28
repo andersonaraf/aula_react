@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import styles from './style';
 
-export function Delivery(){
+export default function Delivery(){
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.buttom} >
