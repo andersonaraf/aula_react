@@ -5,22 +5,23 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#F2F2F2",
         alignItems: 'center',
-        justifyContent: 'center'
     },
-    buttom: {
-        width: '70%',
+    containerStatus: {
+        width: '100%',
         height: '10%',
         backgroundColor: '#8BD078',
-        marginTop: '4%',
-        borderRadius: 10,
         padding: 5,
 
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     text: {
         fontSize: 24,
         fontWeight: '600'
+    },
+    map: {
+        width: '100%',
+        height: '100%',
     }
 })
 
