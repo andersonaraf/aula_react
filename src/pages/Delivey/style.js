@@ -35,19 +35,19 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 10,
     },
-    botao: {
+    buttonFinish: {
+        marginTop: 100,
+        height: 50,
+        width: '45%',
+        borderRadius: 5,
+        backgroundColor: '#77B55F',
+        alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 15,
-        backgroundColor: '#054f77',
-        padding: 20,
-        margin:10,
     },
-    textbotao: {
-        textAlign:'center',
-        height: 30,
-        fontSize: 16,
-        color: '#FFF',
+    textButtonFinish: {
+        fontSize: 18,
         fontWeight: 'bold',
+        color: '#fff',
     },
 })
 

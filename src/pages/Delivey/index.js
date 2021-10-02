@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 
 import MapView, { Marker } from 'react-native-maps';
@@ -11,18 +11,12 @@ import { getLatLong } from '../../api/cepaberto';
 
 import styles from './style';
 
-//NATIVE BASE
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Body,
-} from 'native-base';
-import styled from 'styled-components';
+import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
-export default function Delivery({ route, navigation }) {
+import ImagePicker from 'react-native-image-crop-picker';
+
+export default function Delivery({ navigation, route }) {
 
   //1 - PEdido aceito / 2 - Pagamento Confirmado / 3 - Em separacao / 4 - Enviado / 5 - Recebido
   const [orderStatus, setOrderStatus] = useState('aceito');
@@ -35,6 +29,12 @@ export default function Delivery({ route, navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingTwo, setIsLoadingTwo] = useState(true);
 
+  const idProduct = route.params.item.id;
+  const [image, setImage] = useState('');
+  const [imagePath, setImagePath] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [transfering, setTransfering] = useState(0);
+
   // CARREGAR LOCALIZAÇÃO ATUAL DINAMICAMENTE
   async function loadLocation() {
     setIsLoading(true);
@@ -46,7 +46,7 @@ export default function Delivery({ route, navigation }) {
         setIsLoading(false);
       },
       (error) => {
-        console.log(error.code,'Erro: ' + error.message);
+        console.log(error.code, 'Erro: ' + error.message);
       },
       { enableHighAccuracy: false, timeout: 15000, maximumAge: 3600000 }
     );
@@ -101,13 +101,79 @@ export default function Delivery({ route, navigation }) {
 
     return unsubscribe;
   }, []);
-
+  
   async function getDestinyLatLong() {
     setIsLoadingTwo(true);
     const response = await getLatLong(route.params.item.cep);
     setLatDestino(parseFloat(response.latitude));
     setLongDestino(parseFloat(response.longitude));
     setIsLoadingTwo(false);
+  }
+
+  //ALERT PADRÃO DO APP, ESTUDA
+  const dialogFinish = () => {
+    Alert.alert(
+      "Finalizar Entrega",
+      "Deseja Finalizar a entrega.",
+      [
+        {
+          text: "Cancelar",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "Finalizar", onPress: () => {
+            firestore().collection('tasks').doc(idProduct).update({
+              imagePeopleReceiver: imagePath,
+              status: true,
+            });
+            //REDIRECIONA PARA TELA DE PRODUTOS
+            navigation.navigate("Produtos")
+          }
+        }
+      ]
+    );
+  }
+
+  //FUNCAO REALIZAR UPLOAD DE IMAGES
+  const finish = async () => {
+    const uploadUri = image.path;
+    //PEGA SOMENTE O NOME DO ARQUIVO
+    let fileName = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    //SALVA O NOME DO ARQUIVO PARA SETAR NO BANCO
+    setImagePath(fileName);
+    setUploading(true)
+    setTransfering(0)
+    //CRIAR UM REFERENCIA PARA O STORAGE
+    const task = storage().ref(`images/${fileName}`).putFile(uploadUri);
+    //REALIZAR A TRANSFERIANCIA MOSTRANDO O PROGRESS DE ENVIO
+    task.on('state_changed', taskSnapshot => {
+      console.log(`${taskSnapshot.bytesTransferred} / ${taskSnapshot.totalBytes}`);
+      //SERIA UM PROGESSO DO UPLOAD, MAS ESTOU COM PREGUIÇA
+      setTransfering(
+        //MATEMATICA ESTUDA 
+        Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100
+      );
+    });
+    try {
+      await task;
+      dialogFinish();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  //ABRE A CAMERA E SALVA A IMAGEM NA VARIAVEL
+  //ESSA IMAGEM ESTA NA PASTA TEMPORARIA DO CELULAR
+  async function takePhotoFromCamera() {
+    ImagePicker.openCamera({
+      compressImageMaxWidth: 300,
+      compressImageMaxHeight: 400,
+      cropping: true,
+    }).then(image => {
+      setImage(image);
+      finish();
+    });
   }
 
   return (
@@ -139,7 +205,7 @@ export default function Delivery({ route, navigation }) {
               longitude: longitude,
               latitudeDelta: 0.008,
               longitudeDelta: 0.008,
-              
+
             }}
             zoomEnabled={true}
             maxZoomLevel={13}
@@ -178,12 +244,13 @@ export default function Delivery({ route, navigation }) {
         <Text style={styles.produto}>Rua: {route.params.item.rua}</Text>
         <Text style={styles.produto}>Número: {route.params.item.numero}</Text>
         <Text style={styles.produto}>Bairro: {route.params.item.bairro}</Text>
-        <TouchableOpacity 
-            style={styles.botao}
-            onPress={() => { navigation.navigate("Tirar Foto")}}> 
-            <Text style={styles.textbotao}>Finalizar entrega</Text>
-        </TouchableOpacity>      
-        </ScrollView>
+
+
+        <TouchableOpacity style={styles.buttonFinish} onPress={takePhotoFromCamera}>
+          <Text style={styles.textButtonFinish}>Finalizar Entrega</Text>
+        </TouchableOpacity>
+
+      </ScrollView>
     </View>
   );
 }
