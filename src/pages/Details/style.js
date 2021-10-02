@@ -41,6 +41,17 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: "#F92E6A",
     },
+    addImage: {
+        height: 40,
+        marginTop: 30,
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "90%",
+        alignContent: "center",
+        justifyContent: "center",
+        borderRadius: 50,
+        backgroundColor: "#F92E6A",
+    },
     textImage: {
         color: "#fff",
         fontSize: 16,
