@@ -17,7 +17,7 @@ export default function Task({ navigation }) {
         const taskCollection = firestore().collection('tasks').onSnapshot(querySnapshot => {
             const task = [];
             querySnapshot.forEach(doc => {
-                if (doc.data().status != true) {
+                if (doc.data().status != true && doc.data().statusWithdrawnOnPlace == false) {
                     task.push({
                         id: doc.id,
                         ...doc.data()
