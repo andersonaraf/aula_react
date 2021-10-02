@@ -34,7 +34,21 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         marginTop: 10,
-    }
+    },
+    buttonFinish: {
+        marginTop: 100,
+        height: 50,
+        width: '45%',
+        borderRadius: 5,
+        backgroundColor: '#77B55F',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textButtonFinish: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
 })
 
 export default styles;
