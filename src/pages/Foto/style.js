@@ -35,19 +35,44 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 10,
     },
-    botao: {
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
         justifyContent: 'center',
-        paddingLeft: 15,
-        backgroundColor: '#054f77',
-        padding: 20,
-        margin:10,
+        alignItems: 'center'
     },
-    textbotao: {
-        textAlign:'center',
-        height: 30,
-        fontSize: 16,
-        color: '#FFF',
-        fontWeight: 'bold',
+    photo: {
+        width: 300,
+        height: 200,
+        backgroundColor: "black",
+        alignSelf: "center",
+        marginTop: 80
+    },
+    buttons: {
+        marginTop: 10,
+        flexDirection: "row",
+        justifyContent: "center"
+    },
+    button: {
+        backgroundColor: "black",
+        margin: 20,
+        borderRadius: 150,
+        width: 80,
+        height: 80,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    buttonTakePicture: {
+        flex: 0,
+        alignSelf: "center",
+        position: "absolute",
+        bottom: 20
+    },
+    buttonCloseCamera: {
+        flex: 0,
+        position: "absolute",
+        top: 20,
+        right: 20
     },
 })
 

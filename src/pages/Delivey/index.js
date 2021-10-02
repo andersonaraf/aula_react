@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 
 import MapView, { Marker } from 'react-native-maps';
@@ -22,7 +22,7 @@ import {
 } from 'native-base';
 import styled from 'styled-components';
 
-export default function Delivery({ route }) {
+export default function Delivery({ route, navigation }) {
 
   //1 - PEdido aceito / 2 - Pagamento Confirmado / 3 - Em separacao / 4 - Enviado / 5 - Recebido
   const [orderStatus, setOrderStatus] = useState('aceito');
@@ -178,7 +178,12 @@ export default function Delivery({ route }) {
         <Text style={styles.produto}>Rua: {route.params.item.rua}</Text>
         <Text style={styles.produto}>Número: {route.params.item.numero}</Text>
         <Text style={styles.produto}>Bairro: {route.params.item.bairro}</Text>
-      </ScrollView>
+        <TouchableOpacity 
+            style={styles.botao}
+            onPress={() => { navigation.navigate("Tirar Foto")}}> 
+            <Text style={styles.textbotao}>Finalizar entrega</Text>
+        </TouchableOpacity>      
+        </ScrollView>
     </View>
   );
 }
