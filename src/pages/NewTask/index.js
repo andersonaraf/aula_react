@@ -14,7 +14,10 @@ export default function NewTask({ navigation }) {
     const [numero, setNumero] = useState(null);//numero
     const [cep, setCep] = useState(null);//cep
 
+
+    // função que vai mandar as informações pro banco do firebase
     const addTask = async () => {
+        //Só manda se todos os campos estiverem preenchidos
         if (produto != null && rua != null && bairro != null && numero != null && cep != null) {
 
             firestore()
@@ -29,11 +32,13 @@ export default function NewTask({ navigation }) {
                     entregas: entregas,
                 });
             Alert.alert('Sucesso', 'Tarefa adicionada com sucesso!')
+            //volta pra pagina de produtos
             navigation.navigate("Produtos")
         }
     }
 
     return (
+        //tela setando as novar informações 
         <View style={styles.container}>
             <Text style={styles.label}>Produto</Text>
             <TextInput style={styles.input} value={produto} onChangeText={r => setProduto(r)} placeholder="Ex: Produto" />
