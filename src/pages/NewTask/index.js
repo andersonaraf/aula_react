@@ -30,6 +30,7 @@ export default function NewTask({ navigation }) {
                     cep: cep,
                     status: status,
                     entregas: entregas,
+                    statusWithdrawnOnPlace: false,
                 });
             Alert.alert('Sucesso', 'Tarefa adicionada com sucesso!')
             //volta pra pagina de produtos

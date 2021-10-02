@@ -17,10 +17,12 @@ export default function Task({ navigation }) {
         const taskCollection = firestore().collection('tasks').onSnapshot(querySnapshot => {
             const task = [];
             querySnapshot.forEach(doc => {
-                task.push({
-                    id: doc.id,
-                    ...doc.data()
-                });
+                if (doc.data().status != true && doc.data().statusWithdrawnOnPlace == false) {
+                    task.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                }
             });
             setTask(task);
         });
@@ -36,13 +38,13 @@ export default function Task({ navigation }) {
                     return (
                         <View style={styles.Task}>
                             <TouchableOpacity style={styles.deleteTask} onPress={() => { deleteTask(item.item.id) }}>
-                               <Text style={styles.textDelete}>Deletar</Text>
+                                <Text style={styles.textDelete}>Deletar</Text>
                             </TouchableOpacity>
-                            <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes Do Produto", { id: item.item.id, produto: item.item.produto, endereco: item.item.cep, rua: item.item.rua, numero: item.item.numero, bairro: item.item.bairro}) }}>{item.item.produto}</Text>
-                            <TouchableOpacity 
+                            <Text style={styles.DescriptionTask} onPress={() => { navigation.navigate("Detalhes Do Produto", { id: item.item.id, produto: item.item.produto, endereco: item.item.cep, rua: item.item.rua, numero: item.item.numero, bairro: item.item.bairro }) }}>{item.item.produto}</Text>
+                            <TouchableOpacity
                                 style={styles.deliveryButtom}
-                                onPress={() => { navigation.navigate("Realizar Entrega", {item: item.item})}}
-                            > 
+                                onPress={() => { navigation.navigate("Realizar Entrega", { item: item.item }) }}
+                            >
                                 <Text>Entregar</Text>
                             </TouchableOpacity>
                         </View>
