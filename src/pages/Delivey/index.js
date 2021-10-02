@@ -46,9 +46,9 @@ export default function Delivery({ route }) {
         setIsLoading(false);
       },
       (error) => {
-        console.log(error.code, error.message);
+        console.log(error.code,'Erro: ' + error.message);
       },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      { enableHighAccuracy: false, timeout: 15000, maximumAge: 3600000 }
     );
 
   }
