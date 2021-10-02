@@ -21,7 +21,19 @@ const styles = StyleSheet.create({
     },
     map: {
         width: '100%',
-        height: '100%',
+        height: '50%',
+    },
+    containerScroll: {
+        flex: 1,
+        width: '100%',
+        textAlign: 'center',
+        backgroundColor: '#fff',
+    },
+    produto: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 18,
+        marginTop: 10,
     }
 })
 
